@@ -72,17 +72,17 @@
 # Explanation of Structure
 
 - `src/`: Houses the prototype code for the LMS, supporting core functions:
-    - frontend/: HTML, CSS, JavaScript for interfaces like course creation (Course Management Module) and discussion forum (Student Interaction Module).
+    - `frontend/`: HTML, CSS, JavaScript for interfaces like course creation (Course Management Module) and discussion forum (Student Interaction Module).
 
-    - backend/: PHP (or Node.js/Python) APIs for handling requests (e.g., creating courses, posting in forums).
+    - `backend/`: PHP (or Node.js/Python) APIs for handling requests (e.g., creating courses, posting in forums).
 
-    - database/: MySQL schema and seed data for tables like Users, Courses, Posts, and Quizzes.
+    - `database/`: MySQL schema and seed data for tables like Users, Courses, Posts, and Quizzes.
 
-- docs/: Contains the System Implementation and Evaluation Report, diagrams (Context, DFDs, ERD), traceability matrix, test cases, and behavioral design artifacts (flowchart, pseudocode, FSM) for SDLC documentation. The presentation folder includes slides and speaker notes.
+- `docs/`: Contains the System Implementation and Evaluation Report, diagrams (Context, DFDs, ERD), traceability matrix, test cases, and behavioral design artifacts (flowchart, pseudocode, FSM) for SDLC documentation. The presentation folder includes slides and speaker notes.
 
-- tests/: Supports software quality approaches with unit and integration tests for features like course creation and forum functionality.
+- `tests/`: Supports software quality approaches with unit and integration tests for features like course creation and forum functionality.
 
-- deploy/: Facilitates prototype deployment on local servers (XAMPP) or cloud platforms (Heroku).
+- `deploy/`: Facilitates prototype deployment on local servers (XAMPP) or cloud platforms (Heroku).
 
-- assets/: Stores images (e.g., screenshots for the report) and sample course materials.
+- `assets/`: Stores images (e.g., screenshots for the report) and sample course materials.
 - Root Files: `README.md` explains project setup.
