@@ -3,7 +3,7 @@
 - HTML
 - CSS
 - JavaScript
-- Framework: considering...
+- Framework: Bootstrap
 
 # Backend Technologies
 

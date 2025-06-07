@@ -1,0 +1,85 @@
+@startuml
+!define RECTANGLE class
+
+' External Entities
+entity "Admin" as admin
+entity "Teacher" as teacher
+entity "Student" as student
+entity "Guest" as guest
+
+' Data Stores
+database "User Accounts" as userDB
+database "Courses" as courseDB
+database "Assignments" as assignmentDB
+database "Progress" as progressDB
+database "Notifications" as notificationDB
+
+' Context Diagram (Level 0)
+[Learning Management System] as lms
+
+admin --> lms : Manage accounts, View reports
+teacher --> lms : Create/Update courses, Manage assignments
+student --> lms : Enroll, Submit assignments, View progress
+guest --> lms : View course info, Register
+lms --> admin : Account details, Reports
+lms --> teacher : Course details, Student progress
+lms --> student : Course details, Assignment results, Notifications
+lms --> guest : Course info, Registration confirmation
+
+' Level 1 DFD
+package "Learning Management System" {
+  [Manage Accounts] as manageAccounts
+  [Manage Courses] as manageCourses
+  [Manage Assignments] as manageAssignments
+  [Track Progress] as trackProgress
+  [Handle Enrollment] as handleEnrollment
+  [Manage Notifications] as manageNotifications
+  [View Course Info] as viewCourseInfo
+  [Register User] as registerUser
+
+  ' Data Flows for Admin
+  admin --> manageAccounts : Create/Edit/Delete account
+  manageAccounts --> userDB : Store/Update account data
+  userDB --> manageAccounts : Account data
+  manageAccounts --> admin : Account details
+  admin --> manageAccounts : View reports
+  manageAccounts --> notificationDB : Store notification
+  notificationDB --> manageNotifications : Notification data
+
+  ' Data Flows for Teacher
+  teacher --> manageCourses : Create/Edit/Delete course
+  manageCourses --> courseDB : Store/Update course data
+  courseDB --> manageCourses : Course data
+  teacher --> manageAssignments : Create/Edit assignments
+  manageAssignments --> assignmentDB : Store/Update assignment data
+  assignmentDB --> manageAssignments : Assignment data
+  teacher --> trackProgress : View student progress
+  trackProgress --> progressDB : Retrieve progress data
+  progressDB --> trackProgress : Progress data
+  manageAssignments --> notificationDB : Store notification
+  manageCourses --> notificationDB : Store notification
+
+  ' Data Flows for Student
+  student --> handleEnrollment : Enroll/Cancel enrollment
+  handleEnrollment --> courseDB : Update enrollment data
+  courseDB --> handleEnrollment : Course data
+  student --> manageAssignments : Submit assignment
+  manageAssignments --> assignmentDB : Store submission
+  assignmentDB --> manageAssignments : Assignment results
+  student --> trackProgress : View progress
+  trackProgress --> progressDB : Store/Update progress
+  progressDB --> trackProgress : Progress data
+  manageNotifications --> student : Send notifications
+  notificationDB --> manageNotifications : Notification data
+
+  ' Data Flows for Guest
+  guest --> viewCourseInfo : View course info
+  viewCourseInfo --> courseDB : Retrieve course data
+  courseDB --> viewCourseInfo : Course data
+  guest --> registerUser : Register account
+  registerUser --> userDB : Store account data
+  userDB --> registerUser : Confirmation data
+  registerUser --> notificationDB : Store notification
+}
+
+@enduml
